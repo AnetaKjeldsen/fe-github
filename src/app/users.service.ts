@@ -64,20 +64,16 @@ export class UsersService {
     }
   }
 
-  public searchUser(term: string, since: number) {
-    console.log(this.authGuard.token);
+  public searchUser(term: string, page: number) {
 		if (term) {
-      let sinceUrl = since != null ? `&since=${since}` : "";
-      const url = `${this.githubPublicApiUrl}/search/users?q=${term}+in:fullname+in:login+in:email${sinceUrl}&client_id=${this.clientId}&client_secret=${this.clientSecret}`;
+      let pageUrl = page != null ? `&page=${page}` : "";
+      const url = `${this.githubPublicApiUrl}/search/users?q=${term}+in:fullname+in:login+in:email${pageUrl}&client_id=${this.clientId}&client_secret=${this.clientSecret}`;
       return this.http.get(url, this.options)
-        .map(this.extractData)
+        .map((response: Response) => {
+          return response.json()
+        })
         .catch(this.errorHandler);
     }
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body || {};
   }
 
   private errorHandler(error: any): Promise<any> {
