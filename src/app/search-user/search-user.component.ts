@@ -23,7 +23,7 @@ export class SearchUserComponent implements OnInit {
   private subject: Subject<string> = new Subject();
   private searchTerm: Observable<string>;
   private searchTermValue: string;
-  private since: number = 0;
+  private page: number = 1;
 
   public moreResults: Boolean = false;
   public noResultsFound: Boolean = false;
@@ -39,6 +39,7 @@ export class SearchUserComponent implements OnInit {
       .distinctUntilChanged()
       .subscribe((searchTextValue)  => { 
         this.results = [];
+        this.page = 1;
         this.searchTermValue = searchTextValue;
         this.searchUser(searchTextValue);
       });
@@ -52,11 +53,11 @@ export class SearchUserComponent implements OnInit {
     if (term) {
       this.loading = true;
       this.moreResults = false;
-      this.usersService.searchUser(term, this.since).subscribe(
+      this.usersService.searchUser(term, this.page).subscribe(
         (users) => {
           this.results = this.results.concat(users.items);
           this.noResultsFound = this.results.length == 0 ? true : false;
-          this.moreResults = users.total_count > this.since + 30 ? true : false;
+          this.moreResults = users.total_count > this.page * 30 ? true : false;
           this.loading = false;
         },
         error => {
@@ -67,7 +68,7 @@ export class SearchUserComponent implements OnInit {
   }
 
   private loadMoreUsers(){
-    this.since += 30;
+    this.page += 1;
     this.searchUser(this.searchTermValue);
   }
 }
