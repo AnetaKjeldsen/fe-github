@@ -1,0 +1,17 @@
+<mdl-layout mdl-layout-fixed-header mdl-layout-header-seamed>
+  <mdl-layout-header>
+    <mdl-layout-header-row>
+      <app-current-user></app-current-user>
+      <a [routerLink]="['/dashboard']">
+        <button mdl-button mdl-button-type="fab" mdl-colored="primary">
+          <mdl-icon mdl-colored="accent">arrow_back</mdl-icon>
+        </button>
+      </a>
+      <mdl-layout-title>GitHubbers</mdl-layout-title>   
+    </mdl-layout-header-row>
+  </mdl-layout-header>
+	<mdl-layout-content class="app-main-content">
+    <app-selected-user></app-selected-user>
+    <app-statistics></app-statistics>
+	</mdl-layout-content>
+</mdl-layout>

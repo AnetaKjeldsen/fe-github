@@ -1,0 +1,49 @@
+<button mdl-button mdl-button-type="fab" mdl-ripple mdl-colored="accent" (click)="card.toggle($event);isOpened = !isOpened">
+  <mdl-icon [hidden]="isOpened">face</mdl-icon>
+  <mdl-icon [hidden]="!isOpened">close</mdl-icon>
+</button>
+
+<mdl-popover #card>
+  <mdl-card mdl-shadow="6">
+    <mdl-card-title>
+      <h2 mdl-card-title-text>Welcome {{ gitUser.login }}</h2>
+    </mdl-card-title>
+	  <mdl-card-media>
+      <img src="{{ user.photoURL }}">
+    </mdl-card-media>
+
+    <mdl-list>
+      <mdl-list-item lines="1">
+        <mdl-list-item-primary-content>
+          <mdl-icon mdl-list-item-avatar>mail</mdl-icon>
+          <span>{{ user.email }}</span>
+        </mdl-list-item-primary-content>
+      </mdl-list-item>
+      <mdl-list-item lines="2">
+        <mdl-list-item-primary-content>
+          <mdl-icon mdl-list-item-avatar>query_builder</mdl-icon>
+          <span>On GitHub since</span>
+          <mdl-list-item-sub-title>{{ gitUser.created_at | date }}</mdl-list-item-sub-title>
+        </mdl-list-item-primary-content>
+      </mdl-list-item>
+      <mdl-list-item lines="2">
+        <mdl-list-item-primary-content>
+          <mdl-icon mdl-list-item-avatar>build</mdl-icon>
+          <span>Public Repositories</span>
+          <mdl-list-item-sub-title>{{ gitUser.public_repos }} repos</mdl-list-item-sub-title>
+        </mdl-list-item-primary-content>
+      </mdl-list-item>
+      <mdl-list-item lines="2">
+        <mdl-list-item-primary-content>
+          <mdl-icon mdl-list-item-avatar>favorite</mdl-icon>
+          <span>Followers</span>
+          <mdl-list-item-sub-title>{{ gitUser.followers }}</mdl-list-item-sub-title>
+        </mdl-list-item-primary-content>
+      </mdl-list-item>
+    </mdl-list>    
+
+    <mdl-card-actions mdl-card-border>
+      <button mdl-button mdl-button-type="raised" mdl-colored="accent" (click)="logoutUser()">Log out</button>
+    </mdl-card-actions>
+  </mdl-card>
+</mdl-popover>

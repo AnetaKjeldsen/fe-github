@@ -1,0 +1,16 @@
+<div class="mdl-grid" *ngIf="statisticsReady" [@fadeInAnimation]="statisticsReady">
+	<div class="mdl-cell mdl-cell--12-col mdl-cell--stretch">
+	<mdl-select floating-label [ngModel]="selectedWeek" (ngModelChange)="onWeekChange($event)" name="weeks" label="Select week">
+		<mdl-option *ngFor="let i of weeksSelection" [value]="i.code">{{ i.name }}</mdl-option>
+	</mdl-select>
+
+	<div>
+		<canvas height="50" baseChart
+				[datasets]="lineChartDataset"
+				[labels]="lineChartLabels"
+				[options]="lineChartOptions"
+				[chartType]="lineChartType"
+				(chartHover)="chartHovered($event)"
+				(chartClick)="chartClicked($event)"></canvas>
+	</div>
+</div>

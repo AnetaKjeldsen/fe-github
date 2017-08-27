@@ -1,0 +1,89 @@
+<div class="main-content" *ngIf="selectedUser" [@fadeInAnimation]="selectedUser.state">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--stretch">
+      <mdl-card mdl-shadow="2">
+        <mdl-card-title>
+          <h2 mdl-card-title-text>{{ selectedUserDisplayName }}:</h2>
+        </mdl-card-title>
+        <mdl-card-media>
+          <img src="{{ selectedUser.avatar_url }}">
+        </mdl-card-media>
+        <mdl-card-supporting-text>
+          <mdl-list>
+            <mdl-list-item lines="3">
+              <mdl-list-item-primary-content>
+                <mdl-icon mdl-list-item-avatar *ngIf="selectedUser.type == 'Organization'">business</mdl-icon>
+                <mdl-icon mdl-list-item-avatar *ngIf="selectedUser.type !== 'Organization'">face</mdl-icon>
+                <mdl-list-item-sub-title>
+                  <div *ngIf="selectedUser.email" class="email__item">{{ selectedUser.email }}</div>
+                  <div *ngIf="selectedUser.location">{{ selectedUser.location }}</div>
+                </mdl-list-item-sub-title>
+              </mdl-list-item-primary-content>
+            </mdl-list-item>
+          </mdl-list>
+        </mdl-card-supporting-text>
+      </mdl-card>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--stretch">
+      <mdl-card mdl-shadow="2">
+        <mdl-card-title>
+          <h2 mdl-card-title-text>{{ selectedUserDisplayName }}:</h2>
+        </mdl-card-title>
+        <mdl-list>
+          <mdl-list-item lines="2" *ngIf="selectedUser.blog">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>query_builder</mdl-icon>
+              <span>Blog</span>
+              <mdl-list-item-sub-title><a href="{{ selectedUser.blog }}" target="_blank">{{ selectedUser.blog }}</a></mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.created_at">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>query_builder</mdl-icon>
+              <span>On GitHub since</span>
+              <mdl-list-item-sub-title>{{ selectedUser.created_at | date }}</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.updated_at">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>remove_red_eye</mdl-icon>
+              <span>Last seen on GitHub</span>
+              <mdl-list-item-sub-title>{{ selectedUser.created_at | date }}</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.public_repos">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>build</mdl-icon>
+              <span>Public Repositories</span>
+              <mdl-list-item-sub-title>{{ selectedUser.public_repos }} repos</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.public_gists">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>code</mdl-icon>
+              <span>Public Gists</span>
+              <mdl-list-item-sub-title>{{ selectedUser.public_gists }} gists</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.followers">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>favorite</mdl-icon>
+              <span>Followers</span>
+              <mdl-list-item-sub-title>{{ selectedUser.followers }}</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item lines="2" *ngIf="selectedUser.following">
+            <mdl-list-item-primary-content>
+              <mdl-icon mdl-list-item-avatar>grade</mdl-icon>
+              <span>Following</span>
+              <mdl-list-item-sub-title>{{ selectedUser.following }}</mdl-list-item-sub-title>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+        </mdl-list>  
+      </mdl-card>  
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--stretch">
+      <app-events-received></app-events-received>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="main-content">
+
+  <div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+      <h2>Find GitHubbers</h2>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+
+  <div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--top">
+      <mdl-textfield label="Search by name" name="Name" type="text" #searchBox (keyup)="search(searchBox.value)" floating-label autocomplete="off"></mdl-textfield>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--top">
+      <button mdl-button mdl-button-type="fab" mdl-colored="accent" (click)="search(searchBox.value)">
+        <mdl-icon>search</mdl-icon>
+      </button>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--top" *ngFor="let user of results" [@fadeInAnimation]="user.state">
+      <mdl-card class="demo-card-wide" mdl-shadow="4" mdl-card-border>
+        <mdl-card-title mdl-card-expand>
+          <h2 mdl-card-title-text><a [routerLink]="['/user', user.login]">{{ user.login }}</a></h2>
+        </mdl-card-title>
+        <mdl-card-media>
+            <img src="{{ user.avatar_url }}" [@fadeInAnimation]>
+        </mdl-card-media>
+        <mdl-card-menu>
+          <a href="{{ user.html_url }}" target="_blank">
+            <mdl-icon [mdl-tooltip]="tt1" mdl-tooltip-position="top">star</mdl-icon>
+            <mdl-tooltip #tt1="mdlTooltip">
+              Go to GitHub profile
+            </mdl-tooltip>
+          </a>
+        </mdl-card-menu>
+      </mdl-card>
+    </div>
+  </div>
+
+  <div class="mdl-grid" *ngIf="noResultsFound">
+    <div class="mdl-layout-spacer"></div>
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--center no-results">
+        Sorry, we haven't found any results
+      </div>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+  
+  <div class="mdl-grid" *ngIf="loading == true">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--1-col mdl-cell--center">
+      <mdl-spinner single-color [active]="true"></mdl-spinner>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+
+  <div class="mdl-grid" *ngIf="moreResults">
+    <div class="mdl-layout-spacer"></div>
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--center">
+        <button mdl-button mdl-button-type="raised" mdl-colored="accent" (click)="loadMoreUsers()">
+          Load more GitHubbers
+        </button>
+      </div>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+
+</div>

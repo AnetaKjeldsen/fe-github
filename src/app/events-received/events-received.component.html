@@ -1,0 +1,14 @@
+<mdl-card mdl-shadow="2" *ngIf="topUsers.length > 0">
+  <mdl-card-title>
+    <h2 mdl-card-title-text>Top 10 most frequent:</h2>
+  </mdl-card-title>
+  <mdl-list>
+    <mdl-list-item lines="2" *ngFor="let user of topUsers" [@fadeInAnimation]="user.state">
+      <mdl-list-item-primary-content>
+        <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+        <span>{{ user.actor}}</span>
+        <mdl-list-item-sub-title>{{ user.count}} activities</mdl-list-item-sub-title>
+      </mdl-list-item-primary-content>
+    </mdl-list-item>
+  </mdl-list>
+</mdl-card>

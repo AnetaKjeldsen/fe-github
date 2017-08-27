@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import "~@angular-mdl/core/scss/color-definitions";
+
+$preferred-font: 'Raleway';
+
+$color-primary: $palette-blue-grey-700;
+$color-primary-dark: $palette-blue-grey-900;
+$color-accent: $palette-pink-500;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
+
+@import '~@angular-mdl/core/scss/material-design-lite';
+@import '~@angular-mdl/core/scss/material-design-lite-grid';
+
+@import '~@angular-mdl/select/select';
+@import '~@angular-mdl/popover/popover';
+
+body {
+  overflow: hidden;
+}
+.error {
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.mdl-cell--center {
+  text-align: center;
+}

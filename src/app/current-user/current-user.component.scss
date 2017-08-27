@@ -1,0 +1,26 @@
+.mdl-card__media{
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+    img {
+        width: 100%;
+        margin-top: -50px;
+    }
+}
+.mdl-list, .mdl-card__supporting-text {
+    padding: 0;
+}
+.mdl-list__item--two-line {
+    height: 55px;
+}
+.mdl-list__item {
+    padding: 5px 16px;
+    .material-icons {
+        font-size: 24px;
+        text-align: center;
+        line-height: 40px;
+    }
+}
+.mdl-card__actions{
+    text-align: right;
+}
