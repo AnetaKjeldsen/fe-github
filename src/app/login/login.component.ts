@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public loginUser(name: object) {
+  public loginUser() {
     let provider = new firebase.auth.GithubAuthProvider();
     provider.addScope('repo');
     this.afAuth.auth.signInWithPopup(provider).then(res => {
